@@ -21,17 +21,15 @@ public class PlayerMovement : MonoBehaviour
     {
         RotatePlayer();  // Handle player rotation when right-clicking
         MovePlayer();    // Handle player movement
+        // altMovement();
 
-        // Jumping
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);  // Apply jump force as an impulse
-        }
-
+       
         // Respawn the player if they fall below a certain Y position
         if (transform.position.y < -2.0f)
         {
+            rb.isKinematic = true;
             transform.position = respawnPoint.position;
+            rb.isKinematic = false;
         }
     }
 
@@ -54,6 +52,40 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = transform.forward * moveForward + transform.right * moveSide;
         rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y, movement.z * moveSpeed);
+
+         // Jumping
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);  // Apply jump force as an impulse
+            Debug.Log("jump");
+        }
+
+    }
+
+    void altMovement() // live demo function // does not work with our rotation stuff
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            rb.velocity += new Vector3(0,jumpForce,0);
+            Debug.Log("jump");
+        }
+        else if (Input.GetKey("up"))
+        {
+            rb.velocity += new Vector3(0,0,moveSpeed/20);
+        }
+        else if (Input.GetKey("down"))
+        {
+            rb.velocity += new Vector3(0,0,-moveSpeed/20);
+        }
+        else if (Input.GetKey("left"))
+        {
+            rb.velocity += new Vector3(-moveSpeed/20,0,0);
+        }
+        else if (Input.GetKey("right"))
+        {
+            rb.velocity += new Vector3(moveSpeed/20,0,0);
+        }
+        
     }
 
     // Detect when the player is touching something
