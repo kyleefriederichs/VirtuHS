@@ -30,7 +30,7 @@ public class UpdatedMovement : MonoBehaviour
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
         move *= moveSpeed;
 
-        rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
+        rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
 
         if (Input.GetMouseButton(1)) // right mouse button click; this is for rotating the player's view left/right
         {
@@ -59,7 +59,7 @@ public class UpdatedMovement : MonoBehaviour
     void ResetPlayer()
     {
         transform.SetPositionAndRotation(startingPosition, Quaternion.identity);
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
     }

@@ -46,7 +46,7 @@ public class GoalScript : MonoBehaviour
     void ResetBall()
     {
         ball.transform.SetPositionAndRotation(ballStartPos, Quaternion.identity);
-        ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        ball.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         ball.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
             // the following the exact same as the previous 2 lines

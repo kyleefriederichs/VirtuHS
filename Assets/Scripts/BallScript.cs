@@ -24,7 +24,7 @@ public class BallScript : MonoBehaviour
             rb.isKinematic = true;
             transform.position = respawnPoint.position;
             rb.isKinematic = false;
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
         }
     }
 
@@ -35,7 +35,7 @@ public class BallScript : MonoBehaviour
             rb.isKinematic = true;
             transform.position = other_TP_point.position;
             rb.isKinematic = false;
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
         }
 
         if (other.gameObject.CompareTag("Goal"))

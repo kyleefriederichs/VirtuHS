@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         float moveSide = Input.GetAxis("Horizontal");   // Left/right movement
 
         Vector3 movement = transform.forward * moveForward + transform.right * moveSide;
-        rb.velocity = new Vector3(movement.x * moveSpeed, rb.velocity.y, movement.z * moveSpeed);
+        rb.linearVelocity = new Vector3(movement.x * moveSpeed, rb.linearVelocity.y, movement.z * moveSpeed);
 
          // Jumping
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
@@ -66,24 +66,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            rb.velocity += new Vector3(0,jumpForce,0);
+            rb.linearVelocity += new Vector3(0,jumpForce,0);
             Debug.Log("jump");
         }
         else if (Input.GetKey("up"))
         {
-            rb.velocity += new Vector3(0,0,moveSpeed/20);
+            rb.linearVelocity += new Vector3(0,0,moveSpeed/20);
         }
         else if (Input.GetKey("down"))
         {
-            rb.velocity += new Vector3(0,0,-moveSpeed/20);
+            rb.linearVelocity += new Vector3(0,0,-moveSpeed/20);
         }
         else if (Input.GetKey("left"))
         {
-            rb.velocity += new Vector3(-moveSpeed/20,0,0);
+            rb.linearVelocity += new Vector3(-moveSpeed/20,0,0);
         }
         else if (Input.GetKey("right"))
         {
-            rb.velocity += new Vector3(moveSpeed/20,0,0);
+            rb.linearVelocity += new Vector3(moveSpeed/20,0,0);
         }
         
     }
